@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+
+# Data artifacts (large, downloaded)
+*.h5ad
+*.npz
+*.parquet
+*.png
+*.pdf
+
+# Verdict reports + pre-reg are part of the record
+!**/calibration_report.md
+!**/pilot_calibration_verdict.json
+!analyses/**.md
