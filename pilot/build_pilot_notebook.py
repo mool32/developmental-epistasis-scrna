@@ -88,14 +88,24 @@ SEED = 42
 N_BOOT = 1000
 np.random.seed(SEED)
 
-# Output directory (Drive if Colab, else local)
+# Output directory: Drive if available, else /content/ (ephemeral but
+# fine for one-shot pilot — outputs are <100KB total, downloadable via
+# the file pane at the end).
+OUT_DIR = None
 try:
     from google.colab import drive
     drive.mount('/content/drive', force_remount=False)
-    OUT_DIR = '/content/drive/MyDrive/BioEpistasis_pilot'
-except (ImportError, ModuleNotFoundError):
-    OUT_DIR = os.path.expanduser('~/BioEpistasis_pilot')
-os.makedirs(OUT_DIR, exist_ok=True)
+    candidate = '/content/drive/MyDrive/BioEpistasis_pilot'
+    os.makedirs(candidate, exist_ok=True)
+    OUT_DIR = candidate
+    print(f'OUT_DIR (Drive): {OUT_DIR}')
+except Exception as e:
+    print(f'Drive unavailable ({type(e).__name__}: {e})')
+    print('Falling back to /content/BioEpistasis_pilot — outputs ephemeral.')
+    print('Download verdict.json + parquet manually from the file pane '
+          'before disconnect.')
+    OUT_DIR = '/content/BioEpistasis_pilot'
+    os.makedirs(OUT_DIR, exist_ok=True)
 print(f'OUT_DIR: {OUT_DIR}')"""))
 
 
