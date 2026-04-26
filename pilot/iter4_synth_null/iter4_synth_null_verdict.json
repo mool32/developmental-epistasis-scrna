@@ -1,0 +1,31 @@
+{
+  "project": "BioEpistasis",
+  "phase": "Pilot Iter 4 \u2014 synthetic null test (final pre-reg gate)",
+  "dataset": "scanpy.datasets.paul15 (myeloid lineage)",
+  "n_cells": 2730,
+  "n_top10_pairs_surviving_S4": 20,
+  "n_null_pairs": 100,
+  "observed": {
+    "mean_epsilon": 0.08478396919518776,
+    "median_abs_z": 7.8388709551512825,
+    "n_significant_z_gt_3": 19,
+    "median_abs_z_significant": 8.032374649165012
+  },
+  "synthetic_null": {
+    "mean_epsilon": 0.0002371373518744419,
+    "std_epsilon": 0.0062464856663763755,
+    "median_se": 0.006959872399229921,
+    "median_abs_z": 0.20361268372952307,
+    "frac_abs_z_gt_3": 0.0
+  },
+  "N1_mean_null_close_zero": true,
+  "N2_se_consistent": true,
+  "N3_z_distribution_KS": false,
+  "N3_KS_stat": 0.38416461424933007,
+  "N3_KS_p": 8.702203136750381e-14,
+  "constraint3_dominance": false,
+  "constraint3_max_corr": 0.4763020348577505,
+  "constraint3_threshold": 24.886496450048977,
+  "all_synthetic_null_pass": false,
+  "next_step": "Halt before pre-reg; investigate failing null gate"
+}
