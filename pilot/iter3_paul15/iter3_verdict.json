@@ -1,0 +1,155 @@
+{
+  "project": "BioEpistasis",
+  "phase": "Pilot Iteration 3 \u2014 paul15 (Path B)",
+  "dataset": "scanpy.datasets.paul15 (myeloid lineage)",
+  "n_cells": 2730,
+  "n_genes_after_zheng17": 200,
+  "outcome_primary": "diffusion pseudotime (sc.tl.dpt)",
+  "outcome_secondary": "PCA distance to top-quartile-pseudotime centroid",
+  "top10_hvg": [
+    "Car1",
+    "Car2",
+    "Elane",
+    "Prtn3",
+    "Ctsg",
+    "Fam132a",
+    "Mpo",
+    "Mt2",
+    "Klf1",
+    "Apoe"
+  ],
+  "n_top10_pairs": 45,
+  "sanity": {
+    "1_calibration_p95": 2.227676664353944,
+    "1_pass": true,
+    "2_curated_pair": [
+      "Car2",
+      "Klf1"
+    ],
+    "2_z": 20.611993604462185,
+    "2_pass": true,
+    "3_pearson_rho": -0.9296119848136566,
+    "3_pass": false,
+    "4_min_corner": 12,
+    "4_pass": false,
+    "5_max_abs_corr_outcome_gene": 0.4763020348577505,
+    "5_pass": false,
+    "5_per_gene": [
+      {
+        "gene": "Car1",
+        "abs_pearson_with_outcome": 0.4763020348577505
+      },
+      {
+        "gene": "Car2",
+        "abs_pearson_with_outcome": 0.4248631222264209
+      },
+      {
+        "gene": "Elane",
+        "abs_pearson_with_outcome": 0.39487345431470144
+      },
+      {
+        "gene": "Prtn3",
+        "abs_pearson_with_outcome": 0.38258771798199465
+      },
+      {
+        "gene": "Ctsg",
+        "abs_pearson_with_outcome": 0.4110178841709599
+      },
+      {
+        "gene": "Fam132a",
+        "abs_pearson_with_outcome": 0.2577655191451055
+      },
+      {
+        "gene": "Mpo",
+        "abs_pearson_with_outcome": 0.33450319194159905
+      },
+      {
+        "gene": "Mt2",
+        "abs_pearson_with_outcome": 0.3354440461854705
+      },
+      {
+        "gene": "Klf1",
+        "abs_pearson_with_outcome": 0.3754635155312098
+      },
+      {
+        "gene": "Apoe",
+        "abs_pearson_with_outcome": 0.4268243281051059
+      }
+    ],
+    "6_pass": true,
+    "6_per_gene": [
+      {
+        "gene": "Car1",
+        "q_low": -0.7824363311131796,
+        "frac_nonzero": 0.43736263736263736,
+        "q_high": 0.7532063921292621,
+        "non_degenerate": true
+      },
+      {
+        "gene": "Car2",
+        "q_low": -0.7376246651013694,
+        "frac_nonzero": 0.46007326007326005,
+        "q_high": 0.7784473101298013,
+        "non_degenerate": true
+      },
+      {
+        "gene": "Elane",
+        "q_low": -1.0216312408447266,
+        "frac_nonzero": 0.4186813186813187,
+        "q_high": 0.38517138361930847,
+        "non_degenerate": true
+      },
+      {
+        "gene": "Prtn3",
+        "q_low": -0.5715305209159851,
+        "frac_nonzero": 0.46593406593406594,
+        "q_high": 0.8278637528419491,
+        "non_degenerate": true
+      },
+      {
+        "gene": "Ctsg",
+        "q_low": -0.6711035966873169,
+        "frac_nonzero": 0.4838827838827839,
+        "q_high": 0.7527146935462952,
+        "non_degenerate": true
+      },
+      {
+        "gene": "Fam132a",
+        "q_low": -0.8554664254188538,
+        "frac_nonzero": 0.4003663003663004,
+        "q_high": 0.446911881367365,
+        "non_degenerate": true
+      },
+      {
+        "gene": "Mpo",
+        "q_low": -0.4948721031347911,
+        "frac_nonzero": 0.4824175824175824,
+        "q_high": 0.7676364183425902,
+        "non_degenerate": true
+      },
+      {
+        "gene": "Mt2",
+        "q_low": -0.7494677305221558,
+        "frac_nonzero": 0.3688644688644689,
+        "q_high": 0.417503297328949,
+        "non_degenerate": true
+      },
+      {
+        "gene": "Klf1",
+        "q_low": -0.857595682144165,
+        "frac_nonzero": 0.4205128205128205,
+        "q_high": 0.739071786403656,
+        "non_degenerate": true
+      },
+      {
+        "gene": "Apoe",
+        "q_low": -0.6637611389160156,
+        "frac_nonzero": 0.3326007326007326,
+        "q_high": -0.004370852295930321,
+        "non_degenerate": true
+      }
+    ]
+  },
+  "all_sanity_pass": false,
+  "next_step": "Halt; address failing sanity before pre-reg drafting."
+}
