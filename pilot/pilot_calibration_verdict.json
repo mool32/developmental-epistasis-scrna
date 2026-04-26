@@ -1,0 +1,39 @@
+{
+  "project": "BioEpistasis",
+  "phase": "Pilot \u2014 calibration on Bastidas-Ponce E15.5 pancreas (Schiebinger URL 404, pivot)",
+  "dataset": "Bastidas-Ponce 2019 / scvelo built-in pancreas",
+  "n_cells": 3696,
+  "top10_hvg": [
+    "Sst",
+    "Ghrl",
+    "Ins2",
+    "Gcg",
+    "Npy",
+    "Ins1",
+    "Ppy",
+    "Gast",
+    "Gip",
+    "2810417H13Rik"
+  ],
+  "n_top10_pairs": 45,
+  "n_random_pairs": 50,
+  "outcome_primary": "beta-cell marker score",
+  "outcome_secondary": "PCA distance to beta-marker-high centroid",
+  "sign_convention": "\u03b5 in loss space; \u03b5>0 = synthetic-lethal/redundancy",
+  "sanity": {
+    "sanity1_calibration_p95": 0.3088435948330378,
+    "sanity1_pass": false,
+    "sanity2_curated_pair": [
+      "Ins1",
+      "Ins2"
+    ],
+    "sanity2_z": -5.941652807549676,
+    "sanity2_pass": true,
+    "sanity3_pearson_rho": 0.951434095117992,
+    "sanity3_pass": true,
+    "sanity4_min_corner_cells": 2256,
+    "sanity4_pass": true
+  },
+  "all_sanity_pass": false,
+  "next_step": "Draft pre-reg v1 if PASS; address sanity if FAIL."
+}
