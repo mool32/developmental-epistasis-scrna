@@ -135,41 +135,26 @@ fallback assembles from raw 10x files (slower, ~15 min).
 
 cells.append(code(r"""DATA_DIR = os.path.join(OUT_DIR, 'data')
 os.makedirs(DATA_DIR, exist_ok=True)
-H5AD = os.path.join(DATA_DIR, 'norman2019.h5ad')
+H5AD = os.path.join(DATA_DIR, 'NormanWeissman2019_filtered.h5ad')
 
-# Norman 2019 preprocessed h5ad — multiple potential mirrors. Try them
-# in turn; if all fail, document and abort with instructions.
-URLS = [
-    # Most common preprocessed mirror — verify URL at runtime
-    'https://ndownloader.figshare.com/files/34027562',
-    # Backup mirror via Hugging Face datasets (if mirrored there)
-    'https://huggingface.co/datasets/sciplex/Norman2019/resolve/main/norman2019.h5ad',
-]
+# scPerturb harmonized release on Zenodo — verified working 2026-04-28.
+# Reference: scPerturb paper Nature Methods 2023 (Peidli et al.).
+# File: NormanWeissman2019_filtered.h5ad (~698 MB, MD5 c870e6967d91c017d9da827bab183cd6).
+URL = 'https://zenodo.org/records/10044268/files/NormanWeissman2019_filtered.h5ad?download=1'
 
-if not os.path.exists(H5AD):
-    success = False
-    for url in URLS:
-        try:
-            print(f'Trying: {url}')
-            !wget -q --tries=2 --timeout=60 -O {H5AD} "{url}"
-            sz = os.path.getsize(H5AD)
-            print(f'  size: {sz/1e6:.1f} MB')
-            if sz > 50e6:
-                success = True
-                break
-            else:
-                print('  too small, trying next mirror')
-                os.remove(H5AD)
-        except Exception as e:
-            print(f'  failed: {e}')
-            continue
-    assert success, (
-        'Could not download Norman 2019 h5ad from any mirror.\n'
-        'Manual fallback: download from GEO GSE133344 + preprocess.\n'
-        'See pilot/calibration_report.md for guidance.'
+if not os.path.exists(H5AD) or os.path.getsize(H5AD) < 100e6:
+    print(f'Downloading {URL}')
+    print('Expected ~700 MB; this takes 2-5 min on Colab.')
+    !wget --tries=3 --timeout=120 --progress=dot:giga -O {H5AD} "{URL}"
+    sz = os.path.getsize(H5AD)
+    print(f'\nDownloaded: {sz/1e6:.0f} MB')
+    assert sz > 100e6, (
+        f'Download incomplete ({sz} bytes).\n'
+        f'Verify URL is reachable: {URL}\n'
+        f'scPerturb DOI: 10.5281/zenodo.10044268'
     )
-
-print(f'\nNorman 2019 file: {os.path.getsize(H5AD)/1e6:.0f} MB')"""))
+else:
+    print(f'Cached: {os.path.getsize(H5AD)/1e6:.0f} MB')"""))
 
 
 cells.append(md("""## 4. Load + inspect dataset structure"""))
