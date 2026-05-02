@@ -1,0 +1,29 @@
+{
+  "project": "BioEpistasis",
+  "phase": "Pilot iter 5 \u2014 Norman 2019 K562 Perturb-seq",
+  "dataset": "Norman et al. 2019 GSE133344 (scPerturb mirror)",
+  "n_cells": 111445,
+  "n_testable_pairs": 131,
+  "n_calibration": 20,
+  "sign_convention": "\u03b5 in loss space; \u03b5>0 = synthetic-lethal/redundancy",
+  "sanity": {
+    "S1_calibration_p95": 1.7943340619990182,
+    "S1_pass": true,
+    "S2_curated_pair": [
+      "CBL",
+      "CNN1"
+    ],
+    "S2_z": 11.265401849813585,
+    "S2_pass": true,
+    "S3_pearson_rho": 0.19754258294422158,
+    "S3_pass": false,
+    "S4_min_class": 59,
+    "S4_pass": true,
+    "C3_soft_corr": 0.00032981805270537734,
+    "C4_dominance_median_zsig": 5.330175276888058,
+    "C4_dominance_threshold": 0.11010441086823887,
+    "C4_dominance_pass": true
+  },
+  "all_gates_pass": false,
+  "next_step": "Halt; investigate failing gate before pre-reg drafting"
+}
