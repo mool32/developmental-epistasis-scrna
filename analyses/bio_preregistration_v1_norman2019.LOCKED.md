@@ -10,9 +10,10 @@ future; *this* file does not.
 Tag: `bio_prereg_v1_locked`. Hash recorded in `bio_norman_verdict.json`
 produced by every full-scan run.
 
-**Locked-on-commit:** see annotated tag `bio_prereg_v1_locked`
-(the commit that introduced this file). Exact hash inserted by the
-followup commit `lock: record bio pre-reg commit hash`.
+**Locked-on-commit:** `241d22f` (annotated tag `bio_prereg_v1_locked`).
+This file's substance was introduced at that commit; the only edit
+permitted afterwards is the insertion of this hash record. Hash also
+baked into `bio_norman_verdict.json` produced downstream.
 
 ---
 
