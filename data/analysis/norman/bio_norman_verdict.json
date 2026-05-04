@@ -1,0 +1,263 @@
+{
+  "pre_registration_tag": "bio_prereg_v1_locked",
+  "pre_reg_commit": "241d22f",
+  "model": "Norman 2019 K562 CRISPRi",
+  "dataset": "scPerturb mirror, NormanWeissman2019_filtered.h5ad",
+  "n_cells": 111445,
+  "n_testable_pairs": 131,
+  "n_pairs_scanned": 131,
+  "sign_convention": "\u03b5 in loss space; \u03b5>0 = synthetic-lethal/redundancy",
+  "outcome": "PCA distance to control-cluster centroid (50 PCs)",
+  "n_boot": 1000,
+  "n_permutations": 10000,
+  "permutation_seed": 20260504,
+  "gates": {
+    "G1_calibration_p95": 1.7943340619990182,
+    "G1_pass": true,
+    "G2_max_curated_z": 11.265401849813585,
+    "G2_pass": true,
+    "G3_min_class": 54,
+    "G3_pass": true,
+    "G4_soft_corr": 0.00032981805270537734,
+    "G4_pass": true,
+    "G5_dominance_median_zsig": 7.327176993569834,
+    "G5_dominance_threshold": 0.11010441086823887,
+    "G5_pass": true,
+    "all_gates_pass": true
+  },
+  "primary": {
+    "n_significant_pairs": 77,
+    "n_synth": 33,
+    "frac_synth": 0.42857142857142855,
+    "permutation_p": 0.2093,
+    "tier": "FAIL_REVERSED"
+  },
+  "secondaries": {
+    "median_abs_eps_significant": 0.839036226272583,
+    "median_abs_eps_all": 0.5483090877532959,
+    "aic_shape": {
+      "gaussian": 808.4992842512133,
+      "laplace": 799.240402669337,
+      "student_t": 796.9790110943434
+    },
+    "best_shape": "student_t",
+    "cross_substrate_frac_synth": {
+      "pythia_410m_tier1": 0.78,
+      "olmo_1b_phase4": 0.57,
+      "yeast_costanzo2010": "0.60-0.70 (literature range)",
+      "norman_2019_k562": 0.42857142857142855
+    },
+    "top30_by_abs_z": [
+      {
+        "gene_a": "CEBPE",
+        "gene_b": "KLF1",
+        "epsilon": -2.3564693927764893,
+        "se": 0.09821067628561975,
+        "z": -23.994024701788245
+      },
+      {
+        "gene_a": "CEBPE",
+        "gene_b": "SET",
+        "epsilon": -2.2185566425323486,
+        "se": 0.09725612180579477,
+        "z": -22.81148581024502
+      },
+      {
+        "gene_a": "MAPK1",
+        "gene_b": "PRTG",
+        "epsilon": -1.7693397998809814,
+        "se": 0.0813097652492595,
+        "z": -21.7604834358699
+      },
+      {
+        "gene_a": "DUSP9",
+        "gene_b": "MAPK1",
+        "epsilon": -2.173264741897583,
+        "se": 0.10341641196004939,
+        "z": -21.014698737925013
+      },
+      {
+        "gene_a": "CEBPE",
+        "gene_b": "PTPN12",
+        "epsilon": -2.151379346847534,
+        "se": 0.1126399115563921,
+        "z": -19.099618573212982
+      },
+      {
+        "gene_a": "CNN1",
+        "gene_b": "MAPK1",
+        "epsilon": -1.4344651699066162,
+        "se": 0.08550999563320515,
+        "z": -16.775409228878342
+      },
+      {
+        "gene_a": "CEBPE",
+        "gene_b": "CNN1",
+        "epsilon": -2.1895177364349365,
+        "se": 0.13338730503158167,
+        "z": -16.414738538397877
+      },
+      {
+        "gene_a": "IGDCC3",
+        "gene_b": "MAPK1",
+        "epsilon": -1.372971773147583,
+        "se": 0.08700564440500483,
+        "z": -15.780260953605506
+      },
+      {
+        "gene_a": "CNN1",
+        "gene_b": "UBASH3B",
+        "epsilon": 1.4690382480621338,
+        "se": 0.10022818555230668,
+        "z": 14.656937466911222
+      },
+      {
+        "gene_a": "CEBPE",
+        "gene_b": "ZC3HAV1",
+        "epsilon": -1.6007907390594482,
+        "se": 0.11308110590057942,
+        "z": -14.156129145631622
+      },
+      {
+        "gene_a": "OSR2",
+        "gene_b": "PTPN12",
+        "epsilon": -1.436394453048706,
+        "se": 0.10248071335051825,
+        "z": -14.016241750150172
+      },
+      {
+        "gene_a": "IKZF3",
+        "gene_b": "MAPK1",
+        "epsilon": -2.0749218463897705,
+        "se": 0.15132325671468083,
+        "z": -13.711850322531879
+      },
+      {
+        "gene_a": "OSR2",
+        "gene_b": "UBASH3B",
+        "epsilon": -1.0673749446868896,
+        "se": 0.07826765116234892,
+        "z": -13.637498108546232
+      },
+      {
+        "gene_a": "CEBPE",
+        "gene_b": "RUNX1T1",
+        "epsilon": -1.2510170936584473,
+        "se": 0.09368286539936006,
+        "z": -13.353744981278005
+      },
+      {
+        "gene_a": "CBL",
+        "gene_b": "UBASH3B",
+        "epsilon": 1.4091460704803467,
+        "se": 0.10984164494187777,
+        "z": 12.828887178683368
+      },
+      {
+        "gene_a": "DUSP9",
+        "gene_b": "ETS2",
+        "epsilon": -0.8526761531829834,
+        "se": 0.07203998352218367,
+        "z": -11.836151418891067
+      },
+      {
+        "gene_a": "CNN1",
+        "gene_b": "ETS2",
+        "epsilon": -0.839036226272583,
+        "se": 0.0709023584639402,
+        "z": -11.833685711587483
+      },
+      {
+        "gene_a": "PTPN12",
+        "gene_b": "UBASH3A",
+        "epsilon": 1.3816828727722168,
+        "se": 0.1180078746559873,
+        "z": 11.708395535467895
+      },
+      {
+        "gene_a": "ETS2",
+        "gene_b": "PRTG",
+        "epsilon": -0.9258158206939697,
+        "se": 0.08169990201976159,
+        "z": -11.331908580135545
+      },
+      {
+        "gene_a": "CBL",
+        "gene_b": "CNN1",
+        "epsilon": 1.3438236713409424,
+        "se": 0.11928768181165054,
+        "z": 11.265401849813585
+      },
+      {
+        "gene_a": "MAP2K6",
+        "gene_b": "SPI1",
+        "epsilon": -1.125669240951538,
+        "se": 0.1066874926210053,
+        "z": -10.551089104234036
+      },
+      {
+        "gene_a": "UBASH3B",
+        "gene_b": "ZBTB25",
+        "epsilon": 1.059499979019165,
+        "se": 0.102262529264449,
+        "z": 10.360588444662051
+      },
+      {
+        "gene_a": "FOSB",
+        "gene_b": "IKZF3",
+        "epsilon": -1.6632468700408936,
+        "se": 0.16399689129111936,
+        "z": -10.141941453563154
+      },
+      {
+        "gene_a": "COL2A1",
+        "gene_b": "KLF1",
+        "epsilon": -0.9166896343231201,
+        "se": 0.09118229018017417,
+        "z": -10.053373659641164
+      },
+      {
+        "gene_a": "CEBPB",
+        "gene_b": "PTPN12",
+        "epsilon": -1.3713157176971436,
+        "se": 0.13708223325010876,
+        "z": -10.003599191407655
+      },
+      {
+        "gene_a": "CEBPB",
+        "gene_b": "MAPK1",
+        "epsilon": -1.1889536380767822,
+        "se": 0.1265427451733866,
+        "z": -9.395668131331428
+      },
+      {
+        "gene_a": "TBX2",
+        "gene_b": "TBX3",
+        "epsilon": -0.7843101024627686,
+        "se": 0.08641484502839245,
+        "z": -9.07610378986476
+      },
+      {
+        "gene_a": "ETS2",
+        "gene_b": "IGDCC3",
+        "epsilon": -0.7247583866119385,
+        "se": 0.08023891530655099,
+        "z": -9.032504787022797
+      },
+      {
+        "gene_a": "PTPN12",
+        "gene_b": "UBASH3B",
+        "epsilon": 1.0513637065887451,
+        "se": 0.11642012158257269,
+        "z": 9.03077313695339
+      },
+      {
+        "gene_a": "CNN1",
+        "gene_b": "UBASH3A",
+        "epsilon": 1.6058521270751953,
+        "se": 0.1863427737270648,
+        "z": 8.617732230535958
+      }
+    ]
+  }
+}
