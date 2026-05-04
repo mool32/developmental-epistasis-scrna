@@ -136,18 +136,129 @@ subset only).
 
 ---
 
-## Future use
+## Constraint 3 — HARD vs SOFT circularity (refinement of Constraint 1)
 
-Both constraints become explicit sanity gates in pre-reg drafts. Their
-verification reports go into the verdict JSON of every pilot/pre-reg
-run. Failure to verify either constraint blocks the run.
+**Source:** Pilot Iteration 3 on Paul15 (2026-04-26). Iter 3 ran with
+pseudotime as outcome (graph-derived, not direct gene formula) but
+showed |corr(outcome_pseudotime, top-10 HVG)| up to 0.48. This is
+correlation through shared latent state (lineage), not formula
+inclusion.
 
-If a third pilot iteration discovers a third gap, it is appended here
-as Constraint 3. The discipline rule is: pilot first, gaps surface,
-they get documented here as design rules, then pre-reg locks under
-those rules.
+**HARD circularity (blocking).** Outcome formula directly references
+test gene expression. Iter 1 case. Always disqualifies.
+
+**SOFT correlation (transparent, conditional).** Outcome and test gene
+share information about latent cell state but neither computed from
+the other. Iter 3 case. Bias is bounded by correlation magnitude.
+
+**Resolution.** Constraint 1 became HARD-only blocking. SOFT correlation
+is reported in verdict JSON, threshold > 0.5 warrants caveat,
+threshold > 0.8 forces outcome change.
 
 ---
 
-*2026-04-26. Append-only. Updated after every pilot iteration that
-surfaces a new constraint.*
+## Constraint 4 — Soft-correlation × √n dominance ceiling
+
+**Source:** Pilot Iteration 4 on Paul15 + synthetic null (2026-04-26).
+
+**Failure mode.** On observational scRNA-seq with cell-state outcomes,
+SOFT correlation between test-gene expression and outcome amplifies
+linearly with √n. With max |corr| = 0.48 and n ≈ 2700, the
+amplification term reaches |z| ≈ 25 — comparable to or exceeding the
+strongest observed real signals (median |z|_significant = 8). Real
+biology cannot be statistically distinguished from the soft-correlation
+contribution.
+
+**Quantitative criterion.** `median |z|_sig > max |corr| × √n_eval`
+must hold to claim signal dominates spurious correlation.
+
+**Resolution.** This is the CORE limitation of observational designs
+with cell-state outcomes. **Direct experimental intervention
+(Perturb-seq) breaks the ceiling** because guide barcode is
+independent of expression by experimental construction → C3 SOFT
+correlation collapses to ~0 → C4 dominance margin opens up.
+
+This finding motivated the pivot from observational scRNA-seq
+(Bastidas-Ponce, Paul15) to Perturb-seq (Norman 2019).
+
+---
+
+## Constraint 5 — Binary outcomes saturate in Perturb-seq pair tests
+
+**Source:** Pilot Iteration 5 on Norman 2019 K562 Perturb-seq
+(2026-04-28). Verdict at
+`pilot/iter5_norman/iter5_verdict.json`.
+
+**Failure mode.** With binary cluster-identity outcome (1 = "not in
+control cluster", 0 = "in control cluster"), single-perturbation cells
+saturate near outcome 1: a single guide is enough to push the cell out
+of the control transcriptional state, so single-class-A and single-
+class-B mean outcomes are ≈ 1. Pair-class AB cannot be pushed further
+than ≈ 1. Therefore Δ_AB ≈ Δ_A ≈ Δ_B → ε(cluster) saturates
+artificially in the suppression direction (ε < 0 mechanically).
+
+This is structurally analogous to a saturating dose-response: real
+synthetic-lethal biology may be present but the binary readout cannot
+detect it because the readout has hit ceiling.
+
+**Empirical signature.** S3 outcome-consistency gate (Pearson ρ
+between ε(continuous) and ε(binary) > 0.7) FAILED on Norman pilot
+calibration: |ρ| = 0.198. Cluster ε saturated negative while distance
+ε grew positive across the same pairs.
+
+**Worked example (Norman pilot).** CBL/CNN1 pair:
+- ε(distance, continuous) = +1.34, z = +11.27 (synthetic-lethal direction)
+- ε(cluster, binary) = -0.015, z = -0.56 (saturating, no signal)
+
+Same biology; different outcomes; opposite measured directions because
+binary outcome saturates.
+
+**Rule.** For Perturb-seq combinatorial pair tests:
+- **Primary outcome must be continuous** (PCA distance to reference
+  centroid, pseudotime, fate probability, perturbation-phenotype
+  magnitude).
+- **Secondary outcome (for outcome-consistency cross-check) must
+  also be continuous.** Binary cluster identity is permissible as
+  *descriptive* report (e.g., "fraction of pair-class cells outside
+  control cluster") but not as a sanity-gate denominator.
+- If only binary outcome is available, the S3 outcome-consistency
+  gate is suspended and the verdict is reported as single-outcome
+  with explicit note.
+
+**Verification check.** For any new outcome under consideration:
+compute mean outcome value in single-class-A vs pair-class-AB cells
+across a range of pairs. If mean(AB) and mean(A) are within 5% for
+the majority of pairs, outcome is saturating and disqualified.
+
+**Datasets / designs that satisfy Constraint 5** (verified or expected):
+- Norman 2019 with PCA distance as primary: continuous, monotone
+  with cell-state distance, PASSES.
+- Replogle 2022 perturbation-phenotype magnitude metric: continuous
+  by design, expected to PASS.
+- Adamson 2016 UPR-pathway score: continuous, expected to PASS.
+
+**Datasets / designs that violate Constraint 5** (verified):
+- Norman 2019 with binary cluster identity: saturates in single
+  perturbations, FAILS for pair tests.
+- Any binary "responder/non-responder" outcome where single
+  perturbation already saturates the threshold.
+
+---
+
+## Future use
+
+Constraints 1-5 become explicit sanity gates in pre-reg drafts. Their
+verification reports go into the verdict JSON of every pilot/pre-reg
+run. Failure to verify any constraint blocks the run unless explicitly
+addressed (e.g., HARD vs SOFT split).
+
+The discipline rule: pilot first, gaps surface, they get documented
+here as design rules, then pre-reg locks under those rules. **Five
+iterations have surfaced five distinct constraints.** Each was real,
+each would have produced wrong-direction or non-detectable results
+had pre-reg locked without it.
+
+---
+
+*2026-04-26 / 2026-05-04 (C5 added). Append-only. Updated after every
+pilot iteration that surfaces a new constraint.*
